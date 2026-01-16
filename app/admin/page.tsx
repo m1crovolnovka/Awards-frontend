@@ -491,8 +491,7 @@ export default function AdminPage() {
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleCreateNominee} className="space-y-4">
-                
-                  <div className="space-y-2">
+                            <div className="space-y-2">
                     <Label htmlFor="nomineeName">Имя номинанта</Label>
                     <Input
                       id="nomineeName"
