@@ -194,14 +194,14 @@ useEffect(() => {
       <Snowflakes />
 
       <div className="relative overflow-hidden border-b border-accent/30 festive-header">
-        <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-4xl px-4 py-6 sm:py-8 md:py-12 sm:px-6 lg:px-8">
           <Link href="/">
-            <Button variant="outline" className="mb-6 border-border bg-transparent hover:bg-primary/10">
+            <Button variant="outline" size="sm" className="mb-4 sm:mb-6 border-border bg-transparent hover:bg-primary/10 text-xs sm:text-sm">
               ← К номинациям
             </Button>
           </Link>
           {category.photoUrl ? (
-            <div className="mb-6 w-full h-64 rounded-lg overflow-hidden border border-border">
+            <div className="mb-4 sm:mb-6 w-full h-48 sm:h-56 md:h-64 rounded-lg overflow-hidden border border-border">
               <img 
                 src={category.photoUrl} 
                 alt={category.name}
@@ -209,19 +209,19 @@ useEffect(() => {
               />
             </div>
           ) : (
-            <div className="mb-4 text-4xl">🏆</div>
+          <div className="mb-4 text-3xl sm:text-4xl">🏆</div>
           )}
-          <h1 className="text-balance text-3xl font-bold tracking-tight text-foreground sm:text-4xl mb-4">
+          <h1 className="text-balance text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-3 sm:mb-4">
             {category.name}
           </h1>
           {category.description && (
-            <p className="text-balance text-lg text-muted-foreground">{category.description}</p>
+          <p className="text-balance text-sm sm:text-base md:text-lg text-muted-foreground">{category.description}</p>
           )}
         </div>
       </div>
 
       {/* Voting Info */}
-      <div className="mx-auto max-w-4xl px-4 pt-8 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-4xl px-4 pt-4 sm:pt-6 md:pt-8 sm:px-6 lg:px-8">
         {error && (
           <div className="mb-8 p-4 rounded-md bg-destructive/10 border border-destructive/20">
             <p className="text-sm text-destructive">{error}</p>
@@ -236,24 +236,24 @@ useEffect(() => {
           </div>
         )}
         {userVote && !isRevoting ? (
-          <div className="mb-8 p-4 bg-accent/20 border border-accent/50 rounded-lg flex items-center justify-between">
-            <p className="text-sm font-semibold text-foreground">✓ Ваш голос засчитан за эту номинацию</p>
+          <div className="mb-4 sm:mb-6 md:mb-8 p-3 sm:p-4 bg-accent/20 border border-accent/50 rounded-lg flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            <p className="text-xs sm:text-sm font-semibold text-foreground">✓ Ваш голос засчитан за эту номинацию</p>
             <Button
               onClick={() => setIsRevoting(true)}
               variant="outline"
               size="sm"
-              className="border-accent text-accent hover:bg-accent/10"
+              className="border-accent text-accent hover:bg-accent/10 w-full sm:w-auto text-xs sm:text-sm"
             >
               Изменить выбор
             </Button>
           </div>
         ) : isRevoting ? (
-          <div className="mb-8 p-4 bg-primary/20 border border-primary/50 rounded-lg">
-            <p className="text-sm text-foreground">Выберите другого номинанта и подтвердите выбор</p>
+          <div className="mb-4 sm:mb-6 md:mb-8 p-3 sm:p-4 bg-primary/20 border border-primary/50 rounded-lg">
+            <p className="text-xs sm:text-sm text-foreground">Выберите другого номинанта и подтвердите выбор</p>
           </div>
         ) : (
-          <div className="mb-8 p-4 bg-primary/20 border border-primary/50 rounded-lg">
-            <p className="text-sm text-foreground">
+          <div className="mb-4 sm:mb-6 md:mb-8 p-3 sm:p-4 bg-primary/20 border border-primary/50 rounded-lg">
+            <p className="text-xs sm:text-sm text-foreground">
               {selectedNominee
                 ? "Нажмите «Подтвердить голос», чтобы выбрать"
                 : "Выберите номинанта снизу и подтвердите голос"}
@@ -263,8 +263,8 @@ useEffect(() => {
       </div>
 
       {/* Nominees */}
-      <div className="mx-auto max-w-4xl px-4 pb-20 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+      <div className="mx-auto max-w-4xl px-4 pb-12 sm:pb-16 md:pb-20 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4 mb-6 sm:mb-8">
           {nominees.map((item: any) => {
             const nominee = item.nominee;
             const votes = getVotesForNominee(nominee.id)
@@ -299,12 +299,12 @@ useEffect(() => {
                 {/* Overlay with voting info */}
                 <div className="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent flex flex-col justify-end p-3">
                   <h3 className="font-semibold text-foreground text-sm line-clamp-2">{nominee.name}</h3>
-                  <div className="flex items-center justify-between mt-2">
-                    <span className="text-xs text-muted-foreground">
+                  <div className="flex items-center justify-between mt-2 gap-2">
+                    <span className="text-xs text-muted-foreground truncate">
                       {votes} {votes === 1 ? "vote" : "votes"}
                     </span>
-                    {isVotedFor && !isRevoting && <span className="text-xs font-semibold text-accent">✓ Voted</span>}
-                    {isSelected && <span className="text-xs font-semibold text-primary">Selected</span>}
+                    {isVotedFor && !isRevoting && <span className="text-xs font-semibold text-accent whitespace-nowrap">✓ Voted</span>}
+                    {isSelected && <span className="text-xs font-semibold text-primary whitespace-nowrap">Selected</span>}
                   </div>
                 </div>
               </div>
@@ -314,7 +314,7 @@ useEffect(() => {
 
        
         {selectedNominee && (!userVote || isRevoting) && (
-          <div className="mt-8 flex gap-3 justify-center">
+          <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3 justify-center px-4">
             <Button
               onClick={async () => {
                 const userId = localStorage.getItem("id")
@@ -344,14 +344,16 @@ useEffect(() => {
                 setIsRevoting(false)
               }}
               variant="outline"
-              className="border-border"
+              size="sm"
+              className="border-border text-xs sm:text-sm"
               disabled={votingLoading}
             >
               Отмена
             </Button>
             <Button 
               onClick={handleConfirmVote} 
-              className="bg-accent hover:bg-accent/90 text-accent-foreground"
+              size="sm"
+              className="bg-accent hover:bg-accent/90 text-accent-foreground text-xs sm:text-sm"
               disabled={votingLoading}
             >
               {votingLoading ? "Обработка..." : "Подтвердить голос"}

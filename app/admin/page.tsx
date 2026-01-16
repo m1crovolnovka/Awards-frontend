@@ -320,33 +320,33 @@ export default function AdminPage() {
     <main className="min-h-screen bg-background">
       <Snowflakes />
 
-      <div className="fixed top-4 right-4 z-50 flex gap-2">
+      <div className="fixed top-2 right-2 sm:top-4 sm:right-4 z-50 flex gap-2 flex-wrap">
         <Link href="/">
-          <Button variant="outline" className="bg-card/80 backdrop-blur-sm">
+          <Button variant="outline" size="sm" className="bg-card/80 backdrop-blur-sm text-xs sm:text-sm">
             Главная
           </Button>
         </Link>
         <Link href="/admin/statistics">
-          <Button variant="outline" className="bg-card/80 backdrop-blur-sm">
+          <Button variant="outline" size="sm" className="bg-card/80 backdrop-blur-sm text-xs sm:text-sm">
             Статистика
           </Button>
         </Link>
       </div>
 
       <div className="relative overflow-hidden border-b border-accent/30 festive-header">
-        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 py-8 sm:py-12 md:py-16 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-balance text-4xl font-bold tracking-tight text-foreground sm:text-5xl mb-2">
+            <h1 className="text-balance text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-foreground lg:text-5xl mb-2">
               Панель администратора
             </h1>
-            <p className="text-balance text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-balance text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-2">
               Управление категориями и номинантами для новогодних премий
             </p>
           </div>
         </div>
       </div>
 
-      <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-4xl px-4 py-8 sm:py-12 md:py-16 sm:px-6 lg:px-8">
         {error && (
           <div className="mb-6 p-4 rounded-md bg-destructive/10 border border-destructive/20">
             <p className="text-sm text-destructive">{error}</p>
@@ -360,11 +360,11 @@ export default function AdminPage() {
         )}
 
         <Tabs defaultValue="categories" className="w-full">
-          <TabsList className="grid w-full grid-cols-4">
-            <TabsTrigger value="categories">Категории</TabsTrigger>
-            <TabsTrigger value="nominees">Номинанты</TabsTrigger>
-            <TabsTrigger value="votes">Создание голосов</TabsTrigger>
-            <TabsTrigger value="users">Пользователи</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-4 gap-1 sm:gap-2">
+            <TabsTrigger value="categories" className="text-xs sm:text-sm">Категории</TabsTrigger>
+            <TabsTrigger value="nominees" className="text-xs sm:text-sm">Номинанты</TabsTrigger>
+            <TabsTrigger value="votes" className="text-xs sm:text-sm">Голосования</TabsTrigger>
+            <TabsTrigger value="users" className="text-xs sm:text-sm">Пользователи</TabsTrigger>
           </TabsList>
 
           <TabsContent value="categories">
@@ -453,21 +453,23 @@ export default function AdminPage() {
               <CardContent>
                 <div className="space-y-3">
                   {categories.map((category) => (
-                    <div key={category.id} className="p-4 rounded-md border border-border bg-background/50 flex items-start justify-between gap-4">
-                      {category.photoUrl && (
-                        <div className="w-20 h-20 rounded-lg overflow-hidden border border-border flex-shrink-0">
-                          <img src={category.photoUrl} alt={category.name} className="w-full h-full object-cover" />
+                    <div key={category.id} className="p-3 sm:p-4 rounded-md border border-border bg-background/50 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
+                      <div className="flex items-start gap-3 sm:gap-4 w-full sm:w-auto">
+                        {category.photoUrl && (
+                          <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-lg overflow-hidden border border-border flex-shrink-0">
+                            <img src={category.photoUrl} alt={category.name} className="w-full h-full object-cover" />
+                          </div>
+                        )}
+                        <div className="flex-1 min-w-0">
+                          <p className="font-medium text-base sm:text-lg">{category.name}</p>
+                          {category.description && <p className="text-xs sm:text-sm text-muted-foreground mt-1 break-words">{category.description}</p>}
                         </div>
-                      )}
-                      <div className="flex-1">
-                        <p className="font-medium text-lg">{category.name}</p>
-                        {category.description && <p className="text-sm text-muted-foreground mt-1">{category.description}</p>}
                       </div>
-                      <div className="flex gap-2 ml-4">
-                        <Button variant="outline" size="sm" onClick={() => handleEditCategory(category)}>
+                      <div className="flex gap-2 w-full sm:w-auto sm:ml-4">
+                        <Button variant="outline" size="sm" onClick={() => handleEditCategory(category)} className="flex-1 sm:flex-none text-xs sm:text-sm">
                           Изменить
                         </Button>
-                        <Button variant="destructive" size="sm" onClick={() => handleDeleteCategory(category.id)}>
+                        <Button variant="destructive" size="sm" onClick={() => handleDeleteCategory(category.id)} className="flex-1 sm:flex-none text-xs sm:text-sm">
                           Удалить
                         </Button>
                       </div>

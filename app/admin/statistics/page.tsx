@@ -74,33 +74,33 @@ export default function StatisticsPage() {
     <main className="min-h-screen bg-background">
       <Snowflakes />
 
-      <div className="fixed top-4 right-4 z-50 flex gap-2">
+      <div className="fixed top-2 right-2 sm:top-4 sm:right-4 z-50 flex gap-2 flex-wrap">
         <Link href="/">
-          <Button variant="outline" className="bg-card/80 backdrop-blur-sm">
+          <Button variant="outline" size="sm" className="bg-card/80 backdrop-blur-sm text-xs sm:text-sm">
             Главная
           </Button>
         </Link>
         <Link href="/admin">
-          <Button variant="outline" className="bg-card/80 backdrop-blur-sm">
+          <Button variant="outline" size="sm" className="bg-card/80 backdrop-blur-sm text-xs sm:text-sm">
             Админ-панель
           </Button>
         </Link>
       </div>
 
       <div className="relative overflow-hidden border-b border-accent/30 festive-header">
-        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 py-8 sm:py-12 md:py-16 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-balance text-4xl font-bold tracking-tight text-foreground sm:text-5xl mb-2">
+            <h1 className="text-balance text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-foreground lg:text-5xl mb-2">
               Статистика
             </h1>
-            <p className="text-balance text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-balance text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-2">
               Детальная статистика голосования
             </p>
           </div>
         </div>
       </div>
 
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 py-8 sm:py-12 md:py-16 sm:px-6 lg:px-8">
         {error && (
           <div className="mb-6 p-4 rounded-md bg-destructive/10 border border-destructive/20">
             <p className="text-sm text-destructive">{error}</p>
