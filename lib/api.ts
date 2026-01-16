@@ -1,7 +1,7 @@
 import axios from "axios"
 
 // Получаем URL бэкенда из переменной окружения, по умолчанию localhost:8080
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080"
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "https://awards-jx4m.onrender.com"
 
 // Create axios instance with default config
 const axiosInstance = axios.create({

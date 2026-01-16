@@ -5,11 +5,13 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        # Передаем переменную на этапе сборки (build time)
+        # Важно: NEXT_PUBLIC_ переменные в Next.js встраиваются в бандл во время сборки
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-https://awards-jx4m.onrender.com}
     ports:
       - "3000:3000"
     environment:
       - NODE_ENV=production
-      # URL бэкенда API - измените на ваш URL при деплое
-      - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL:-http://localhost:8080}
     restart: unless-stopped
 

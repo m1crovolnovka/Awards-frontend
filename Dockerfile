@@ -23,6 +23,11 @@ COPY . .
 # Отключаем telemetry во время сборки
 ENV NEXT_TELEMETRY_DISABLED=1
 
+# ARG для передачи переменных окружения на этапе сборки
+# Переменные с префиксом NEXT_PUBLIC_ встраиваются в клиентский бандл во время сборки
+ARG NEXT_PUBLIC_API_URL
+ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
+
 # Собираем приложение
 RUN \
   if [ -f package-lock.json ]; then npm run build; \
